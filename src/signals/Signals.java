@@ -22,7 +22,7 @@ public class Signals {
     public static void main(String[] args) throws IOException {
         Signal_calculations obj = new Signal_calculations();
         Get_file file_w = new Get_file();
-        if (args.length < 1) {
+        if (args.length < 2) {
             System.out.println("Please provide input and output files");
             System.exit(0);
         } else {
@@ -32,6 +32,12 @@ public class Signals {
                 while ((byteRead = file_w.fin.read()) != -1) {
                    data.add(byteRead);
                 }
+                System.out.println(Signal_calculations.dinamic_range_c(data));
+                ///Main magic area///
+                DataStorage storage = new DataStorage();
+                storage.GetInfo(data);
+                storage.Display();
+                storage.FileOutput();
             } else {
                 System.out.println("Some files are undetected.");
                 System.exit(0);

@@ -20,9 +20,19 @@ public class Get_file {
             try {
                 fin = new FileInputStream(args[0]);
             } catch (FileNotFoundException e) {
-                System.out.println("Файл для ввода не найден");
+                System.out.println("Input file not found.");
+                return false;
+            }
+            try {
+                fout = new FileOutputStream(args[1]);
+            } catch (FileNotFoundException e) {
+                System.out.println("Output file not found.");
                 return false;
             }
         return true;
+    }
+    public static void Terminate() throws IOException{
+        fin.close();
+        fout.close();
     }
 }
