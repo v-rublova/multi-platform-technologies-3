@@ -43,7 +43,7 @@ public class DataStorage {
         this.average_power = Signal_calculations.average_power_c(data);
         this.average_value = Signal_calculations.average_value_c(data);
         this.dispersion = Signal_calculations.dispersion_c(data);
-        this.function = Signal_calculations.function(data, 0, 10);
+        this.function = Signal_calculations.function(data, 0, 10000);
         this.correlation_interval = Signal_calculations.correlation_interval(data);
     }
 
@@ -61,15 +61,18 @@ public class DataStorage {
     }
 
     public void FileOutput() throws IOException {
-        try (DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(Get_file.fout))) {
+        try ( DataOutputStream outStream = new DataOutputStream(new BufferedOutputStream(Get_file.fout))) {
             outStream.writeUTF(Integer.toString(this.dinamic_range));
             outStream.writeUTF(Integer.toString(this.energy));
             outStream.writeUTF(Float.toString(this.average_power));
             outStream.writeUTF(Float.toString(this.average_value));
             outStream.writeUTF(Float.toString(this.dispersion));
+            for (int i = 0; i < function.size(); i++) {
+                outStream.writeUTF(Double.toString(function.get(i)));
+            }
             outStream.close();
         }
-        
+
         Get_file.Terminate();
     }
 

@@ -30,9 +30,8 @@ public class Signals {
                 Integer byteRead;
                 ArrayList<Integer> data = new ArrayList<Integer>();
                 while ((byteRead = file_w.fin.read()) != -1) {
-                   data.add(byteRead);
+                    data.add(byteRead);
                 }
-                System.out.println(Signal_calculations.dinamic_range_c(data));
                 ///Main magic area///
                 DataStorage storage = new DataStorage();
                 storage.GetInfo(data);
